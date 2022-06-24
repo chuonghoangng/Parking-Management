@@ -10,8 +10,6 @@
     """,
     'depends': [
         'mail',
-        'product',
-        'hr',
         'resource',
         'report_xlsx',
     ],
