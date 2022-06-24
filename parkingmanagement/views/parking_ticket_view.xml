@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_parking_ticket_tree" model="ir.ui.view">
+        <field name="name">parking.ticket.tree</field>
+        <field name="model">parking.ticket</field>
+
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="time_in"></field>
+                <field name="parking_time" sum="Total times"></field>
+                <field name="vehicle_id"></field>
+                <field name="parkinglot_id"></field>
+                <field name="state"></field>
+                <field name="totals" sum="Total amount"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="view_parking_ticket_search" model="ir.ui.view">
+        <field name="name">parking.ticket.search</field>
+        <field name="model">parking.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="code"/>
+                <field name="time_in"></field>
+                <field name="parking_time"></field>
+                <field name="ref"></field>
+                <field name="vehicle_id"></field>
+                <field name="parkinglot_id"></field>
+                <field name="state"></field>
+                <field name="totals"></field>
+                <filter name="filter_state" string="State" domain="[('state','=','draft')]"></filter>
+            </search>
+        </field>
+    </record>
+    <record id="view_parking_ticket_form" model="ir.ui.view">
+        <field name="name">parking.ticket.form</field>
+        <field name="model">parking.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+
+
+                    <field name="state" widget="statusbar" nolabel="1"
+                           statusbar_visible="draft,done"/>
+
+                </header>
+                <sheet>
+                    <field name="image" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="code" readonly="1"/>
+                            <field name="vehicle_id"></field>
+                            <field name="parkinglot_id"></field>
+                        </group>
+                        <group>
+                            <field name="time_in"></field>
+                            <field name="parking_time"></field>
+                        </group>
+                        <group>
+                            <field name="ref"></field>
+                        </group>
+                        <group>
+                            <h2>
+                                <button name="action_payment" string="Payment" class="oe_highlight" type="object"
+                                        states="draft"/>
+                                <br></br>
+                                <label for="totals" string="Totals:"/>
+                                <field name="totals" readonly="1"></field>
+                            </h2>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_parking_ticket" model="ir.actions.act_window">
+        <field name="name">Parking ticket</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">parking.ticket</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_filter_state':1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Lot!
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_pdf">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <h1 style="color:Tomato;">REPORT ON PARKING</h1>
+                <h3>
+                    <t t-esc="parkinglot"></t>
+                    <t t-esc="vehicle"></t>
+                </h3>
+                <table class="table table-sm">
+                    <tr style="background-color: lightblue">
+                        <td>
+                            <p>Code</p>
+                        </td>
+                        <td>
+                            <p>Start time</p>
+                        </td>
+                        <td>
+                            <p>Into money</p>
+                        </td>
+                    </tr>
+                    <t t-foreach="docs" t-as="ticket">
+                        <tr>
+                            <td>
+                                <t t-esc="ticket.code"></t>
+                            </td>
+                            <td>
+                                <t t-esc="display_datetime(ticket.time_in)"></t>
+                            </td>
+                            <td>
+                                <t t-esc="ticket.totals"></t>
+                            </td>
+                        </tr>
+                    </t>
+
+                </table>
+                <h3>Total amount (VND): <t t-esc="sum(docs.mapped('totals'))"></t></h3>
+
+                <h3>Total traffic (turn): <t t-esc="len(docs)"></t></h3>
+
+            </t>
+        </t>
+    </template>
+</odoo>

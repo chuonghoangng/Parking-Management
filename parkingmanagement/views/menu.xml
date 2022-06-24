@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_parking_root"
+        name="Parking"
+        web_icon="parkingmanagement,static/description/icon.png"
+        sequence="0"/>
+
+</odoo>

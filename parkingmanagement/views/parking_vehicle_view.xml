@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_vehicle_tree" model="ir.ui.view">
+        <field name="name">parking.vehicle.tree</field>
+        <field name="model">parking.vehicle</field>
+        <field name="arch" type="xml">
+            <tree>
+<!--                <field name="id"/>-->
+                <field name="name"/>
+                <field name="price"/>
+                <field name="mulct"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="view_vehicle_form" model="ir.ui.view">
+        <field name="name">parking.vehicle.form</field>
+        <field name="model">parking.vehicle</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+<!--                            <field name="id"/>-->
+                            <field name="name"/>
+                            <field name="price"/>
+                            <field name="mulct"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_vehicle" model="ir.actions.act_window">
+        <field name="name">parking vehicle</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">parking.vehicle</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first vehicle!
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_vehicle"
+              name="Vehicle"
+              action="action_vehicle"
+              parent="menu_parking_root"
+              sequence="10"/>
+</odoo>
